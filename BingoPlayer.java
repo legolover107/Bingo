@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class BingoPlayer {
     private String name;
     private int[][] card = new int[5][5];
+    private boolean[][] isChecked = new boolean[5][5];
     private String[][] goodLookingNums = {{ "   ###   ",
                                             "  #   #  ",
                                             " #     # ",
@@ -111,6 +112,8 @@ public class BingoPlayer {
     public BingoPlayer(String name) {
         this.name = name;
         card = new int[5][5];
+        isChecked = new boolean[5][5];
+        isChecked[2][2] = true;
     }
 
     public String getName() {
