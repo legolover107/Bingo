@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class BingoPlayer {
     private String name;
     private int[][] card = new int[5][5];
-    private boolean[][] isChecked = new boolean[5][5];
+    private boolean[][] boardIsChecked = new boolean[5][5];
     private String[][] goodLookingNums = {{ "   ###   ",
                                             "  #   #  ",
                                             " #     # ",
@@ -100,6 +100,90 @@ public class BingoPlayer {
                                             "    ",
                                             "    ",
                                             "    "}};//7
+    private String[][] checkedNums = {{"         ",
+                                       " ,gPPRg, ",
+                                       "dP' _ `Yb",
+                                       "8) | | (8",
+                                       "Yb |_| dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP'   `Yb",
+                                       "8)   | (8",
+                                       "Yb   | dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP' _ `Yb",
+                                       "8)  _| (8",
+                                       "Yb |_  dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP' _ `Yb",
+                                       "8)  _| (8",
+                                       "Yb  _| dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP'   `Yb",
+                                       "8) |_| (8",
+                                       "Yb   | dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP' _ `Yb",
+                                       "8) |_  (8",
+                                       "Yb  _| dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP' _ `Yb",
+                                       "8) |_  (8",
+                                       "Yb |_| dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP' _ `Yb",
+                                       "8)   | (8",
+                                       "Yb   | dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP' _ `Yb",
+                                       "8) |_| (8",
+                                       "Yb |_| dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       " ,gPPRg, ",
+                                       "dP' _ `Yb",
+                                       "8) |_| (8",
+                                       "Yb  _| dP",
+                                       " \"8ggg8\" ",
+                                       "         "},
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'_ ",
+                                       "    8)| |",
+                                       "    Yb|_|",
+                                       "     \"8gg",
+                                       "         "},
+                                      {"         ",
+                                       "Rg, ",
+                                       " `Yb",
+                                       "8) | | (8",
+                                       "Yb.|_|,dP",
+                                       " \"8ggg8\" ",
+                                       "         "}};
     private String[] freeSpace = {"  .------------.  ",//0
                                   "  |   _________|  ",//1
                                   "  |  |            ",//2
@@ -112,8 +196,8 @@ public class BingoPlayer {
     public BingoPlayer(String name) {
         this.name = name;
         card = new int[5][5];
-        isChecked = new boolean[5][5];
-        isChecked[2][2] = true;
+        boardIsChecked = new boolean[5][5];
+        boardIsChecked[2][2] = true;
     }
 
     public String getName() {
@@ -170,13 +254,25 @@ public class BingoPlayer {
                         printedRow += freeSpace[i];
                     } else {
                         String tempItem = Integer.toString(card[row][col]);
-                        if (tempItem.length() == 1) {
-                            printedRow += goodLookingNums[10][i];
-                            printedRow += goodLookingNums[Integer.parseInt(tempItem)][i];
-                            printedRow += goodLookingNums[11][i];
+                        if (boardIsChecked[row][col]) {
+                            if (tempItem.length() == 1) {
+                                printedRow += goodLookingNums[10][i];
+                                printedRow += goodLookingNums[Integer.parseInt(tempItem)][i];
+                                printedRow += goodLookingNums[11][i];
+                            } else {
+                                for(int j = 0; j < tempItem.length(); j++) {
+                                    printedRow += goodLookingNums[Integer.parseInt(tempItem.substring(j, j+1))][i];
+                                }
+                            }
                         } else {
-                            for(int j = 0; j < tempItem.length(); j++) {
-                                printedRow += goodLookingNums[Integer.parseInt(tempItem.substring(j, j+1))][i];
+                            if (tempItem.length() == 1) {
+                                printedRow += goodLookingNums[10][i];
+                                printedRow += goodLookingNums[Integer.parseInt(tempItem)][i];
+                                printedRow += goodLookingNums[11][i];
+                            } else {
+                                for(int j = 0; j < tempItem.length(); j++) {
+                                    printedRow += goodLookingNums[Integer.parseInt(tempItem.substring(j, j+1))][i];
+                                }
                             }
                         }
                     }
@@ -185,6 +281,22 @@ public class BingoPlayer {
                 System.out.println(printedRow);
             }
             System.out.println();
+        }
+
+        /*for (int[] row:card) {
+            for (int col:row) {
+                System.out.print(col + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();*/
+    }
+
+    public void markCard(int num) {
+        for (int i = 0; i < 5; i++) {
+            if (card[(num-1)/15][i] == num && !boardIsChecked[(num-1)/15][i]) {
+                boardIsChecked[(num-1)/15][i] = true;
+            }
         }
     }
 

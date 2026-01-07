@@ -26,6 +26,9 @@ public class Main {
             int ind = (int)(Math.random() * hopper.size());
             int num = hopper.get(ind);
             System.out.println(BINGO[(num-1)/15] + num);
+            for (BingoPlayer player:players) {
+                
+            }
             hopper.remove(ind);
         }
 
