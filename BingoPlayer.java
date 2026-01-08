@@ -106,6 +106,7 @@ public class BingoPlayer {
                                        "8) | | (8",
                                        "Yb |_| dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -113,6 +114,7 @@ public class BingoPlayer {
                                        "8)   | (8",
                                        "Yb   | dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -120,6 +122,7 @@ public class BingoPlayer {
                                        "8)  _| (8",
                                        "Yb |_  dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -127,6 +130,7 @@ public class BingoPlayer {
                                        "8)  _| (8",
                                        "Yb  _| dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -134,6 +138,7 @@ public class BingoPlayer {
                                        "8) |_| (8",
                                        "Yb   | dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -141,6 +146,7 @@ public class BingoPlayer {
                                        "8) |_  (8",
                                        "Yb  _| dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -148,6 +154,7 @@ public class BingoPlayer {
                                        "8) |_  (8",
                                        "Yb |_| dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -155,6 +162,7 @@ public class BingoPlayer {
                                        "8)   | (8",
                                        "Yb   | dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -162,6 +170,7 @@ public class BingoPlayer {
                                        "8) |_| (8",
                                        "Yb |_| dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        " ,gPPRg, ",
@@ -169,6 +178,7 @@ public class BingoPlayer {
                                        "8) |_| (8",
                                        "Yb  _| dP",
                                        " \"8ggg8\" ",
+                                       "         ",
                                        "         "},
                                       {"         ",
                                        "     ,gPP",
@@ -176,13 +186,161 @@ public class BingoPlayer {
                                        "    8)| |",
                                        "    Yb|_|",
                                        "     \"8gg",
+                                       "         ",
                                        "         "},
                                       {"         ",
-                                       "Rg, ",
-                                       " `Yb",
-                                       "8) | | (8",
-                                       "Yb.|_|,dP",
-                                       " \"8ggg8\" ",
+                                       "     ,gPP",
+                                       "    dP'  ",
+                                       "    8)  |",
+                                       "    Yb  |",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'_ ",
+                                       "    8) _|",
+                                       "    Yb|_ ",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'_ ",
+                                       "    8) _|",
+                                       "    Yb _|",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'  ",
+                                       "    8)|_|",
+                                       "    Yb  |",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'_ ",
+                                       "    8)|_ ",
+                                       "    Yb _|",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'_ ",
+                                       "    8)|_ ",
+                                       "    Yb|_|",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'_ ",
+                                       "    8)  |",
+                                       "    Yb  |",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'_ ",
+                                       "    8)|_|",
+                                       "    Yb|_|",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+
+                                      {"         ",
+                                       "     ,gPP",
+                                       "    dP'_ ",
+                                       "    8)|_|",
+                                       "    Yb _|",
+                                       "     \"8gg",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " _Yb     ",
+                                       "| |8     ",
+                                       "|_|P     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " `Yb     ",
+                                       " |(8     ",
+                                       " |dP     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " _Yb     ",
+                                       " _|8     ",
+                                       "|_ P     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " _Yb     ",
+                                       " _|8     ",
+                                       " _|P     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " `Yb     ",
+                                       "|_|8     ",
+                                       "  |P     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " _Yb     ",
+                                       "|_ 8     ",
+                                       " _|P     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " _Yb     ",
+                                       "|_ 8     ",
+                                       "|_|P     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " _Yb     ",
+                                       "  |8     ",
+                                       "  |P     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " _Yb     ",
+                                       "|_|8     ",
+                                       "|_|P     ",
+                                       "g8\"      ",
+                                       "         ",
+                                       "         "},
+                                      {"         ",
+                                       "Rg,      ",
+                                       " _Yb     ",
+                                       "|_|8     ",
+                                       " _|P     ",
+                                       "g8\"      ",
+                                       "         ",
                                        "         "}};
     private String[] freeSpace = {"  .------------.  ",//0
                                   "  |   _________|  ",//1
@@ -257,11 +415,15 @@ public class BingoPlayer {
                         if (boardIsChecked[row][col]) {
                             if (tempItem.length() == 1) {
                                 printedRow += goodLookingNums[10][i];
-                                printedRow += goodLookingNums[Integer.parseInt(tempItem)][i];
+                                printedRow += checkedNums[Integer.parseInt(tempItem)][i];
                                 printedRow += goodLookingNums[11][i];
                             } else {
                                 for(int j = 0; j < tempItem.length(); j++) {
-                                    printedRow += goodLookingNums[Integer.parseInt(tempItem.substring(j, j+1))][i];
+                                    if (j%2 == 0) {
+                                        printedRow += checkedNums[Integer.parseInt(tempItem.substring(j, j+1)) + 10][i];
+                                    } else {
+                                        printedRow += checkedNums[Integer.parseInt(tempItem.substring(j, j+1)) + 20][i];
+                                    }
                                 }
                             }
                         } else {
@@ -298,6 +460,42 @@ public class BingoPlayer {
                 boardIsChecked[(num-1)/15][i] = true;
             }
         }
+    }
+
+    public boolean hasBingo() {
+        boolean[] checkFor = {true, true, true, true, true};
+        for (boolean[] col:boardIsChecked) {
+            if (col.equals(checkFor)) {
+                return true;
+            }
+        }
+        for (int i = 0; i < boardIsChecked[0].length; i++) {
+            for (int j = 0; j < boardIsChecked.length; j++) {
+                if (!boardIsChecked[j][i]) {
+                    break;
+                }
+                if (j == boardIsChecked.length - 1) {
+                    return true;
+                }
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            if (!boardIsChecked[i][i]) {
+                break;
+            }
+            if (i == 4) {
+                return true;
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            if (!boardIsChecked[4-i][i]) {
+                break;
+            }
+            if (i == 4) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

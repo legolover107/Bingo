@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
         BingoPlayer[] players = new BingoPlayer[5];
         players[0] = new BingoPlayer("Bob");
         players[1] = new BingoPlayer("Fred");
@@ -22,14 +24,21 @@ public class Main {
             hopper.add(i);
         }
         String[] BINGO = {"B", "I", "N", "G", "O"};
-        while (hopper.size() != 0) {
-            int ind = (int)(Math.random() * hopper.size());
-            int num = hopper.get(ind);
-            System.out.println(BINGO[(num-1)/15] + num);
-            for (BingoPlayer player:players) {
-                
+        int count = 1;
+        while (count < 75) {
+            if (scan.hasNext()) {
+                int ind = (int)(Math.random() * hopper.size());
+                int num = hopper.get(ind);
+                System.out.println(BINGO[(num-1)/15] + num);
+                if (true) {    
+                    for (BingoPlayer player:players) {
+                        player.markCard(num);
+                        player.printCard();
+                    }
+                }
+                hopper.remove(ind);
+                count--;
             }
-            hopper.remove(ind);
         }
 
     }
