@@ -16,7 +16,7 @@ public class Main {
         }
 
         for (BingoPlayer player:players) {
-            player.printCard();
+            //player.printCard();
         }
 
         ArrayList<Integer> hopper = new ArrayList<>();
@@ -24,22 +24,20 @@ public class Main {
             hopper.add(i);
         }
         String[] BINGO = {"B", "I", "N", "G", "O"};
-        int count = 1;
+        int count = 0;
         while (count < 75) {
-            if (scan.hasNext()) {
-                int ind = (int)(Math.random() * hopper.size());
-                int num = hopper.get(ind);
-                System.out.println(BINGO[(num-1)/15] + num);
-                if (true) {    
-                    for (BingoPlayer player:players) {
-                        player.markCard(num);
-                        player.printCard();
-                    }
+            int ind = (int)(Math.random() * hopper.size());
+            int num = hopper.get(ind);
+            System.out.println("Caller:\t" + BINGO[(num-1)/15] + " " + num);
+            if (true) {    
+                for (BingoPlayer player:players) {
+                    player.markCard(num);
+                    System.out.println(player + "\n");
                 }
-                hopper.remove(ind);
-                count--;
             }
+            hopper.remove(ind);
+            count++;
         }
-
+        scan.close();
     }
 }

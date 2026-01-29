@@ -454,12 +454,14 @@ public class BingoPlayer {
         System.out.println();*/
     }
 
-    public void markCard(int num) {
+    public boolean markCard(int num) {
         for (int i = 0; i < 5; i++) {
-            if (card[(num-1)/15][i] == num && !boardIsChecked[(num-1)/15][i]) {
+            if (card[(num-1)/15][i] == num) {
                 boardIsChecked[(num-1)/15][i] = true;
+                return true;
             }
         }
+        return false;
     }
 
     public boolean hasBingo() {
@@ -496,6 +498,33 @@ public class BingoPlayer {
             }
         }
         return false;
+    }
+
+    public String toString() {
+        String toReturn = "  B   I   N   G   O \n";
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (boardIsChecked[j][i]) {
+                    toReturn += "(";
+                } else {
+                    toReturn += " ";
+                }
+
+                if (card[i][j] / 10 == 0) {
+                    toReturn += " " + card[i][j];
+                } else {
+                    toReturn += card[i][j];
+                }
+
+                if (boardIsChecked[i][j]) {
+                    toReturn += ")";
+                } else {
+                    toReturn += " ";
+                }
+            }
+            toReturn += "\n";
+        }
+        return toReturn;
     }
 
 }
