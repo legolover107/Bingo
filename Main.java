@@ -25,14 +25,14 @@ public class Main {
         }
         String[] BINGO = {"B", "I", "N", "G", "O"};
         int count = 0;
-        while (count < 75) {
+        while (count < 15) {
             int ind = (int)(Math.random() * hopper.size());
             int num = hopper.get(ind);
             System.out.println("Caller:\t" + BINGO[(num-1)/15] + " " + num);
             if (true) {    
                 for (BingoPlayer player:players) {
                     player.markCard(num);
-                    System.out.println(player + "\n");
+                    player.printMarks();
                 }
             }
             hopper.remove(ind);
