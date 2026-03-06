@@ -2,8 +2,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+    public static int getMostMarks(BingoPlayer[] bingoPlayers) {
+        int[] mostMarks = {0, -1}; // num, index
+        for (int i = 0; i < bingoPlayers.length; i++) {
+            if (bingoPlayers[i].numOfMarks() > mostMarks[0]) {
+                mostMarks[0] = bingoPlayers[i].numOfMarks();
+                mostMarks[1] = i;
+            }
+        }
+        return mostMarks[1];
+    }
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        //BingoPlayer.simpleNumbers = false;
         BingoPlayer[] players = new BingoPlayer[5];
         players[0] = new BingoPlayer("Bob");
         players[1] = new BingoPlayer("Fred");
@@ -32,10 +44,11 @@ public class Main {
             if (true) {    
                 for (BingoPlayer player:players) {
                     player.markCard(num);
-                    player.printMarks();
+                    player.printCard("\n");
                 }
             }
             hopper.remove(ind);
+            System.out.println(getMostMarks(players));
             count++;
         }
         scan.close();

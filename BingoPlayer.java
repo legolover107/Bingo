@@ -104,8 +104,8 @@ public class BingoPlayer {
     private String[][] checkedNums = {{"         ",
                                        " ,gPPRg, ",
                                        "dP'   `Yb",
-                                       "8)   | (8",
-                                       "Yb   | dP",
+                                       "8)  |  (8",
+                                       "Yb  |  dP",
                                        " \"8ggg8\" ",
                                        "         ",
                                        "         "},
@@ -377,7 +377,7 @@ public class BingoPlayer {
         }
     }
 
-    public void printCard() {
+    public void printCard(String args) {
         if (!simpleNumbers) {
             System.out.println( "  .----------------.     .----------------.     .-----------------.    .----------------.     .----------------. \n" + //
                                 " | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |\n" + //
@@ -390,56 +390,60 @@ public class BingoPlayer {
                                 " | |              | |   | |              | |   | |              | |   | |              | |   | |              | |\n" + //
                                 " | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |\n" + //
                                 "  '----------------'     '----------------'     '----------------'     '----------------'     '----------------' \n");
-            for (int row = 0; row < 5; row++) {
-                for (int i = 0; i <= 7; i++) {
-                    String printedRow = "  ";
-                    for (int col = 0; col < 5; col++) {
-                        if (card[col][row] == 0) {
-                            printedRow += freeSpace[i];
-                        } else {
-                            String tempItem = Integer.toString(card[row][col]);
+            for (int y = 0; y < 5; y++) {
+                for (int i = 0; i < 8; i++) {
+                    String toPrint = "  ";
+                    for (int x = 0; x < 5; x++) { 
+                        if (y == 2 && x == 2) {
+                            toPrint += freeSpace[i];
+                        } else if (boardIsChecked[y][x]) {
+                            String tempItem = Integer.toString(card[y][x]);
                             if (tempItem.length() == 1) {
-                                printedRow += goodLookingNums[10][i];
-                                printedRow += goodLookingNums[Integer.parseInt(tempItem)][i];
-                                printedRow += goodLookingNums[11][i];
+                                toPrint += goodLookingNums[10][i];
+                                toPrint += checkedNums[Integer.parseInt(tempItem)-1][i];
+                                toPrint += goodLookingNums[11][i];
+                            } else {
+                                toPrint += checkedNums[Integer.parseInt(tempItem.substring(0, 1)) + 8][i] + checkedNums[Integer.parseInt(tempItem.substring(1, 2)) + 18][i];
+                            }
+                        } else {
+                            String tempItem = Integer.toString(card[y][x]);
+                            if (tempItem.length() == 1) {
+                                toPrint += goodLookingNums[10][i];
+                                toPrint += goodLookingNums[Integer.parseInt(tempItem)][i];
+                                toPrint += goodLookingNums[11][i];
                             } else {
                                 for(int j = 0; j < tempItem.length(); j++) {
-                                    printedRow += goodLookingNums[Integer.parseInt(tempItem.substring(j, j+1))][i];
+                                    toPrint += goodLookingNums[Integer.parseInt(tempItem.substring(j, j+1))][i];
                                 }
                             }
                         }
-                        printedRow += "     ";
+                        toPrint += "     ";
                     }
-                    System.out.println(printedRow);
+                    System.out.println(toPrint);
                 }
-                System.out.println();
             }
-
-            /*for (int[] row:card) {
-                for (int col:row) {
-                    System.out.print(col + " ");
-                }
-                System.out.println();
-            }
-            System.out.println();*/
         } else {
-            System.out.println("  B\t I\t N\t G\t O");
+            System.out.println("  B\t I\t N\t G\t O\n");
             for (int y = 0; y < 5; y++) {
                 String toPrint = " ";
                 for (int x = 0; x < 5; x++) {
                     if (y == 2 && x == 2) {
                         toPrint += "F";
+                    } else if (boardIsChecked[y][x]) {
+                        toPrint += "[]";
                     } else {
-                        if ((card[x][y]) / 10 == 0) {
+                        if ((card[y][x]) / 10 == 0) {
                             toPrint += " ";
                         }
                         toPrint += card[y][x];
                     }
                     toPrint += "\t";
                 }
-                System.out.println(toPrint);
+                System.out.println(toPrint + "\n");
             }
         }
+        System.out.println();
+        System.out.print(args);
     }
 
     public boolean markCard(int num) {
@@ -500,72 +504,27 @@ public class BingoPlayer {
         return count;
     }
 
-    public void printMarks() {
-        if (!simpleNumbers) {
-            System.out.println( "  .----------------.     .----------------.     .-----------------.    .----------------.     .----------------. \n" + //
-                                " | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |\n" + //
-                                " | |   ______     | |   | |     _____    | |   | | ____  _____  | |   | |    ______    | |   | |     ____     | |\n" + //
-                                " | |  |_   _  \\   | |   | |    |_   _|   | |   | ||_   \\|_   _| | |   | |  .' ___  |   | |   | |   .'    '.   | |\n" + //
-                                " | |    | |_) |   | |   | |      | |     | |   | |  |   \\ | |   | |   | | / .'   \\_|   | |   | |  /  .--.  \\  | |\n" + //
-                                " | |    |  __'.   | |   | |      | |     | |   | |  | |\\ \\| |   | |   | | | |    ____  | |   | | {  |    |  } | |\n" + //
-                                " | |   _| |__) |  | |   | |     _| |_    | |   | | _| |_\\   |_  | |   | | \\ `.___]  _| | |   | |  \\  '--'  /  | |\n" + //
-                                " | |  |_______/   | |   | |    |_____|   | |   | ||_____|\\____| | |   | |  `._____.'   | |   | |   '.____.'   | |\n" + //
-                                " | |              | |   | |              | |   | |              | |   | |              | |   | |              | |\n" + //
-                                " | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |\n" + //
-                                "  '----------------'     '----------------'     '----------------'     '----------------'     '----------------' \n");
-            for (int y = 0; y < 5; y++) {
-                for (int i = 0; i < 8; i++) {
-                    String toPrint = "  ";
-                    for (int x = 0; x < 5; x++) { 
-                        if (y == 2 && x == 2) {
-                            toPrint += freeSpace[i];
-                        } else if (boardIsChecked[y][x]) {
-                            String tempItem = Integer.toString(card[y][x]);
-                            if (tempItem.length() == 1) {
-                                toPrint += goodLookingNums[10][i];
-                                toPrint += checkedNums[Integer.parseInt(tempItem)][i];
-                                toPrint += goodLookingNums[11][i];
-                            } else {
-                                toPrint += checkedNums[Integer.parseInt(tempItem.substring(0, 1)) + 8][i] + checkedNums[Integer.parseInt(tempItem.substring(1, 2)) + 18][i];
-                            }
-                        } else {
-                            String tempItem = Integer.toString(card[y][x]);
-                            if (tempItem.length() == 1) {
-                                toPrint += goodLookingNums[10][i];
-                                toPrint += goodLookingNums[Integer.parseInt(tempItem)][i];
-                                toPrint += goodLookingNums[11][i];
-                            } else {
-                                for(int j = 0; j < tempItem.length(); j++) {
-                                    toPrint += goodLookingNums[Integer.parseInt(tempItem.substring(j, j+1))][i];
-                                }
-                            }
-                        }
-                        toPrint += "     ";
+    public void printMarks(String args) {
+        System.out.println("  B\t I\t N\t G\t O\n");
+        for (int y = 0; y < 5; y++) {
+            String toPrint = " ";
+            for (int x = 0; x < 5; x++) {
+                if (y == 2 && x == 2) {
+                    toPrint += "F";
+                } else if (boardIsChecked[y][x]) {
+                    toPrint += "[]";
+                } else {
+                    if ((card[y][x]) / 10 == 0) {
+                        toPrint += " ";
                     }
-                    System.out.println(toPrint);
+                    toPrint += card[y][x];
                 }
+                toPrint += "\t";
             }
-        } else {
-            System.out.println("  B\t I\t N\t G\t O\n");
-            for (int y = 0; y < 5; y++) {
-                String toPrint = " ";
-                for (int x = 0; x < 5; x++) {
-                    if (y == 2 && x == 2) {
-                        toPrint += "F";
-                    } else if (boardIsChecked[y][x]) {
-                        toPrint += "[]";
-                    } else {
-                        if ((card[y][x]) / 10 == 0) {
-                            toPrint += " ";
-                        }
-                        toPrint += card[y][x];
-                    }
-                    toPrint += "\t";
-                }
-                System.out.println(toPrint + "\n");
-            }
-            System.out.println();
+            System.out.println(toPrint + "\n");
         }
+        System.out.println();
+        System.out.print(args);
     }
 
     public String toString() {
