@@ -77,13 +77,13 @@ public class BingoPlayer {
                                             " #     # ",
                                             "  #####  ",
                                             "         "},
-                                           {"  #####  ",//0
-                                            " #     # ",//1
-                                            " #     # ",//2
-                                            "  ###### ",//3
-                                            "       # ",//4
-                                            " #     # ",//5
-                                            "  #####  ",//6
+                                           {"  #####  ",
+                                            " #     # ",
+                                            " #     # ",
+                                            "  ###### ",
+                                            "       # ",
+                                            " #     # ",
+                                            "  #####  ",
                                             "         "},
                                            {"     ",
                                             "     ",
@@ -100,7 +100,7 @@ public class BingoPlayer {
                                             "    ",
                                             "    ",
                                             "    ",
-                                            "    "}};//7
+                                            "    "}};
     private String[][] checkedNums = {{"         ",
                                        " ,gPPRg, ",
                                        "dP'   `Yb",
@@ -327,14 +327,88 @@ public class BingoPlayer {
                                        "g8\"      ",
                                        "         ",
                                        "         "}};
-    private String[] freeSpace = {"  .------------.  ",//0
-                                  "  |   _________|  ",//1
-                                  "  |  |            ",//2
-                                  "  |  '-----.      ",//3
-                                  "  |  .-----'      ",//4
-                                  "  |  |            ",//5
-                                  "  |  |            ",//6
-                                  "  '--'            "};//7
+    private String[] freeSpace = {"  .------------.  ",
+                                  "  |   _________|  ",
+                                  "  |  |            ",
+                                  "  |  '-----.      ",
+                                  "  |  .-----'      ",
+                                  "  |  |            ",
+                                  "  |  |            ",
+                                  "  '--'            "};
+
+    private boolean[][][] winningBoards = {{{true, true, true, true, true},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false}},
+                                        
+                                           {{false, false, false, false, false},
+                                            {true, true, true, true, true},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false}},
+                                        
+                                           {{false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {true, true, true, true, true},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false}},
+                                        
+                                           {{false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {true, true, true, true, true},
+                                            {false, false, false, false, false}},
+                                        
+                                           {{false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {false, false, false, false, false},
+                                            {true, true, true, true, true}},
+
+
+                                           {{true, false, false, false, false},
+                                            {true, false, false, false, false},
+                                            {true, false, false, false, false},
+                                            {true, false, false, false, false},
+                                            {true, false, false, false, false}},
+                                        
+                                           {{false, true, false, false, false},
+                                            {false, true, false, false, false},
+                                            {false, true, false, false, false},
+                                            {false, true, false, false, false},
+                                            {false, true, false, false, false}},
+                                        
+                                           {{false, false, true, false, false},
+                                            {false, false, true, false, false},
+                                            {false, false, true, false, false},
+                                            {false, false, true, false, false},
+                                            {false, false, true, false, false}},
+                                        
+                                           {{false, false, false, true, false},
+                                            {false, false, false, true, false},
+                                            {false, false, false, true, false},
+                                            {false, false, false, true, false},
+                                            {false, false, false, true, false}},
+                                        
+                                           {{false, false, false, false, true},
+                                            {false, false, false, false, true},
+                                            {false, false, false, false, true},
+                                            {false, false, false, false, true},
+                                            {false, false, false, false, true}},
+
+                                        
+                                           {{true, false, false, false, false},
+                                            {false, true, false, false, false},
+                                            {false, false, true, false, false},
+                                            {false, false, false, true, false},
+                                            {false, false, false, false, true}},
+                                        
+                                           {{false, false, false, false, true},
+                                            {false, false, false, true, false},
+                                            {false, false, true, false, false},
+                                            {false, true, false, false, false},
+                                            {true, false, false, false, false}}};
 
     public BingoPlayer(String name) {
         this.name = name;
@@ -359,9 +433,7 @@ public class BingoPlayer {
             int temp = count + 14;
             for (int j = count; j <= temp; j++,count++) {
                 bingoNums.get(i).add(j);
-                //System.out.print(j + " ");
             }
-            //System.out.println();
         }
         
         for (int i = 0; i < 5; i++) {
@@ -379,16 +451,16 @@ public class BingoPlayer {
 
     public void printCard(String args) {
         if (!simpleNumbers) {
-            System.out.println( "  .----------------.     .----------------.     .-----------------.    .----------------.     .----------------. \n" + //
-                                " | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |\n" + //
-                                " | |   ______     | |   | |     _____    | |   | | ____  _____  | |   | |    ______    | |   | |     ____     | |\n" + //
-                                " | |  |_   _  \\   | |   | |    |_   _|   | |   | ||_   \\|_   _| | |   | |  .' ___  |   | |   | |   .'    '.   | |\n" + //
-                                " | |    | |_) |   | |   | |      | |     | |   | |  |   \\ | |   | |   | | / .'   \\_|   | |   | |  /  .--.  \\  | |\n" + //
-                                " | |    |  __'.   | |   | |      | |     | |   | |  | |\\ \\| |   | |   | | | |    ____  | |   | | {  |    |  } | |\n" + //
-                                " | |   _| |__) |  | |   | |     _| |_    | |   | | _| |_\\   |_  | |   | | \\ `.___]  _| | |   | |  \\  '--'  /  | |\n" + //
-                                " | |  |_______/   | |   | |    |_____|   | |   | ||_____|\\____| | |   | |  `._____.'   | |   | |   '.____.'   | |\n" + //
-                                " | |              | |   | |              | |   | |              | |   | |              | |   | |              | |\n" + //
-                                " | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |\n" + //
+            System.out.println( "  .----------------.     .----------------.     .-----------------.    .----------------.     .----------------. \n" + 
+                                " | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |\n" + 
+                                " | |   ______     | |   | |     _____    | |   | | ____  _____  | |   | |    ______    | |   | |     ____     | |\n" + 
+                                " | |  |_   _  \\   | |   | |    |_   _|   | |   | ||_   \\|_   _| | |   | |  .' ___  |   | |   | |   .'    '.   | |\n" + 
+                                " | |    | |_) |   | |   | |      | |     | |   | |  |   \\ | |   | |   | | / .'   \\_|   | |   | |  /  .--.  \\  | |\n" + 
+                                " | |    |  __'.   | |   | |      | |     | |   | |  | |\\ \\| |   | |   | | | |    ____  | |   | | {  |    |  } | |\n" + 
+                                " | |   _| |__) |  | |   | |     _| |_    | |   | | _| |_\\   |_  | |   | | \\ `.___]  _| | |   | |  \\  '--'  /  | |\n" + 
+                                " | |  |_______/   | |   | |    |_____|   | |   | ||_____|\\____| | |   | |  `._____.'   | |   | |   '.____.'   | |\n" + 
+                                " | |              | |   | |              | |   | |              | |   | |              | |   | |              | |\n" + 
+                                " | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |\n" + 
                                 "  '----------------'     '----------------'     '----------------'     '----------------'     '----------------' \n");
             for (int y = 0; y < 5; y++) {
                 for (int i = 0; i < 8; i++) {
@@ -456,41 +528,16 @@ public class BingoPlayer {
         return false;
     }
 
-    /*public boolean hasBingo() {
-        boolean[] checkFor = {true, true, true, true, true};
-        for (boolean[] col:boardIsChecked) {
-            if (col.equals(checkFor)) {
-                return true;
-            }
-        }
-        for (int i = 0; i < boardIsChecked[0].length; i++) {
-            for (int j = 0; j < boardIsChecked.length; j++) {
-                if (!boardIsChecked[j][i]) {
-                    break;
-                }
-                if (j == boardIsChecked.length - 1) {
-                    return true;
+    public boolean winnerFound() {
+        for (boolean[][] possibleBingo:winningBoards) {
+            boolean isWin = false;
+            for (int col = 0; col < 5; col++) {
+                for (int row = 0; row < 5; row++) {
+                    
                 }
             }
         }
-        for (int i = 0; i < 5; i++) {
-            if (!boardIsChecked[i][i]) {
-                break;
-            }
-            if (i == 4) {
-                return true;
-            }
-        }
-        for (int i = 0; i < 5; i++) {
-            if (!boardIsChecked[4-i][i]) {
-                break;
-            }
-            if (i == 4) {
-                return true;
-            }
-        }
-        return false;
-    }*/
+    }
 
     public int numOfMarks() {
         int count = 0;
@@ -525,33 +572,6 @@ public class BingoPlayer {
         }
         System.out.println();
         System.out.print(args);
-    }
-
-    public String toString() {
-        String toReturn = "  B   I   N   G   O \n";
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (boardIsChecked[j][i]) {
-                    toReturn += "(";
-                } else {
-                    toReturn += " ";
-                }
-
-                if (card[i][j] / 10 == 0) {
-                    toReturn += " " + card[i][j];
-                } else {
-                    toReturn += card[i][j];
-                }
-
-                if (boardIsChecked[i][j]) {
-                    toReturn += ")";
-                } else {
-                    toReturn += " ";
-                }
-            }
-            toReturn += "\n";
-        }
-        return toReturn;
     }
 
 }
