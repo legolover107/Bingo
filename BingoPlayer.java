@@ -449,7 +449,7 @@ public class BingoPlayer {
         }
     }
 
-    public void printCard(String args) {
+    public void printCard() {
         if (!simpleNumbers) {
             System.out.println( "  .----------------.     .----------------.     .-----------------.    .----------------.     .----------------. \n" + 
                                 " | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |\n" + 
@@ -502,7 +502,7 @@ public class BingoPlayer {
                     if (y == 2 && x == 2) {
                         toPrint += "F";
                     } else if (boardIsChecked[y][x]) {
-                        toPrint += "[]";
+                        toPrint += "\u001B[1m" + "[]" + "\u001B[0m";
                     } else {
                         if ((card[y][x]) / 10 == 0) {
                             toPrint += " ";
@@ -514,8 +514,7 @@ public class BingoPlayer {
                 System.out.println(toPrint + "\n");
             }
         }
-        System.out.println();
-        System.out.print(args);
+        System.out.println("\n");
     }
 
     public boolean markCard(int num) {
@@ -529,13 +528,30 @@ public class BingoPlayer {
     }
 
     public boolean winnerFound() {
-        for (boolean[][] possibleBingo:winningBoards) {
+        for (int i = 0; i < winningBoards.length; i++) {
+            boolean[][] possibleBingo = winningBoards[i];
             boolean isWin = false;
             for (int col = 0; col < 5; col++) {
                 for (int row = 0; row < 5; row++) {
-                    
+                    if (col == 0 && row == 0) {
+                        isWin = checkForMark(possibleBingo, col, row);
+                    } else {
+                        isWin = isWin && checkForMark(possibleBingo, col, row);
+                    }
                 }
             }
+            if (isWin) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkForMark(boolean[][] possibleBingo, int col, int row) {
+        if (possibleBingo[col][row]) {
+            return boardIsChecked[col][row] == true;
+        } else {
+            return true;
         }
     }
 
@@ -551,7 +567,7 @@ public class BingoPlayer {
         return count;
     }
 
-    public void printMarks(String args) {
+    public void printMarks() {
         System.out.println("  B\t I\t N\t G\t O\n");
         for (int y = 0; y < 5; y++) {
             String toPrint = " ";
@@ -559,7 +575,7 @@ public class BingoPlayer {
                 if (y == 2 && x == 2) {
                     toPrint += "F";
                 } else if (boardIsChecked[y][x]) {
-                    toPrint += "[]";
+                    toPrint += "\u001B[1m" + "[]" + "\u001B[0m";
                 } else {
                     if ((card[y][x]) / 10 == 0) {
                         toPrint += " ";
@@ -570,8 +586,7 @@ public class BingoPlayer {
             }
             System.out.println(toPrint + "\n");
         }
-        System.out.println();
-        System.out.print(args);
+        System.out.println("\n");
     }
 
 }

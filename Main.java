@@ -27,28 +27,28 @@ public class Main {
             player.generateCard();
         }
 
-        for (BingoPlayer player:players) {
-            //player.printCard();
-        }
-
         ArrayList<Integer> hopper = new ArrayList<>();
         for (int i = 1; i <= 75; i++) {
             hopper.add(i);
         }
         String[] BINGO = {"B", "I", "N", "G", "O"};
         int count = 0;
-        while (count < 15) {
+        while (count < 75) {
             int ind = (int)(Math.random() * hopper.size());
             int num = hopper.get(ind);
+            hopper.remove(ind);
             System.out.println("Caller:\t" + BINGO[(num-1)/15] + " " + num);
-            if (true) {    
-                for (BingoPlayer player:players) {
-                    player.markCard(num);
-                    player.printCard("\n");
+            for (BingoPlayer player:players) {
+                player.markCard(num);
+            }
+            System.out.println(getMostMarks(players));
+            for (BingoPlayer player:players) {
+                if (player.winnerFound()) {
+                    System.out.println("BINGO: " + player.getName());
+                    player.printCard();
+                    System.exit(0);
                 }
             }
-            hopper.remove(ind);
-            System.out.println(getMostMarks(players));
             count++;
         }
         scan.close();
