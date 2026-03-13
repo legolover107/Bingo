@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 
 public class BingoPlayer {
-    public static boolean simpleNumbers = true;
+    private final int COLORNUM = (int)(Math.random()*6)+1;
+    private final String COLOR = "\u001B[3" + COLORNUM + "m";
+    private final String BOLD = "\u001B[1;3" + COLORNUM + "m";
+    private final String RESET = "\u001B[0m";
+    public static boolean simpleNumbers = false;
     private String name;
     private int[][] card = new int[5][5];
     private boolean[][] boardIsChecked = new boolean[5][5];
@@ -418,7 +422,7 @@ public class BingoPlayer {
     }
 
     public String getName() {
-        return name;
+        return BOLD + name + RESET;
     }
 
     public void generateCard() {
@@ -451,31 +455,31 @@ public class BingoPlayer {
 
     public void printCard() {
         if (!simpleNumbers) {
-            System.out.println( "  .----------------.     .----------------.     .-----------------.    .----------------.     .----------------. \n" + 
-                                " | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |\n" + 
-                                " | |   ______     | |   | |     _____    | |   | | ____  _____  | |   | |    ______    | |   | |     ____     | |\n" + 
-                                " | |  |_   _  \\   | |   | |    |_   _|   | |   | ||_   \\|_   _| | |   | |  .' ___  |   | |   | |   .'    '.   | |\n" + 
-                                " | |    | |_) |   | |   | |      | |     | |   | |  |   \\ | |   | |   | | / .'   \\_|   | |   | |  /  .--.  \\  | |\n" + 
-                                " | |    |  __'.   | |   | |      | |     | |   | |  | |\\ \\| |   | |   | | | |    ____  | |   | | {  |    |  } | |\n" + 
-                                " | |   _| |__) |  | |   | |     _| |_    | |   | | _| |_\\   |_  | |   | | \\ `.___]  _| | |   | |  \\  '--'  /  | |\n" + 
-                                " | |  |_______/   | |   | |    |_____|   | |   | ||_____|\\____| | |   | |  `._____.'   | |   | |   '.____.'   | |\n" + 
-                                " | |              | |   | |              | |   | |              | |   | |              | |   | |              | |\n" + 
-                                " | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |\n" + 
-                                "  '----------------'     '----------------'     '----------------'     '----------------'     '----------------' \n");
+            System.out.println( COLOR + "  .----------------.     .----------------.     .-----------------.    .----------------.     .----------------. \n" + 
+                                        " | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |   | .--------------. |\n" + 
+                                        " | |   ______     | |   | |     _____    | |   | | ____  _____  | |   | |    ______    | |   | |     ____     | |\n" + 
+                                        " | |  |_   _  \\   | |   | |    |_   _|   | |   | ||_   \\|_   _| | |   | |  .' ___  |   | |   | |   .'    '.   | |\n" + 
+                                        " | |    | |_) |   | |   | |      | |     | |   | |  |   \\ | |   | |   | | / .'   \\_|   | |   | |  /  .--.  \\  | |\n" + 
+                                        " | |    |  __'.   | |   | |      | |     | |   | |  | |\\ \\| |   | |   | | | |    ____  | |   | | {  |    |  } | |\n" + 
+                                        " | |   _| |__) |  | |   | |     _| |_    | |   | | _| |_\\   |_  | |   | | \\ `.___]  _| | |   | |  \\  '--'  /  | |\n" + 
+                                        " | |  |_______/   | |   | |    |_____|   | |   | ||_____|\\____| | |   | |  `._____.'   | |   | |   '.____.'   | |\n" + 
+                                        " | |              | |   | |              | |   | |              | |   | |              | |   | |              | |\n" + 
+                                        " | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |   | '--------------' |\n" + 
+                                        "  '----------------'     '----------------'     '----------------'     '----------------'     '----------------' \n" + RESET);
             for (int y = 0; y < 5; y++) {
                 for (int i = 0; i < 8; i++) {
                     String toPrint = "  ";
                     for (int x = 0; x < 5; x++) { 
                         if (y == 2 && x == 2) {
-                            toPrint += freeSpace[i];
+                            toPrint += COLOR + freeSpace[i] + RESET;
                         } else if (boardIsChecked[y][x]) {
                             String tempItem = Integer.toString(card[y][x]);
                             if (tempItem.length() == 1) {
-                                toPrint += goodLookingNums[10][i];
+                                toPrint += COLOR + goodLookingNums[10][i];
                                 toPrint += checkedNums[Integer.parseInt(tempItem)-1][i];
-                                toPrint += goodLookingNums[11][i];
+                                toPrint += goodLookingNums[11][i] + RESET;
                             } else {
-                                toPrint += checkedNums[Integer.parseInt(tempItem.substring(0, 1)) + 8][i] + checkedNums[Integer.parseInt(tempItem.substring(1, 2)) + 18][i];
+                                toPrint += COLOR + checkedNums[Integer.parseInt(tempItem.substring(0, 1)) + 8][i] + checkedNums[Integer.parseInt(tempItem.substring(1, 2)) + 18][i] + RESET;
                             }
                         } else {
                             String tempItem = Integer.toString(card[y][x]);
@@ -495,14 +499,14 @@ public class BingoPlayer {
                 }
             }
         } else {
-            System.out.println("  B\t I\t N\t G\t O\n");
+            System.out.println(BOLD + "  B\t I\t N\t G\t O\n" + RESET);
             for (int y = 0; y < 5; y++) {
                 String toPrint = " ";
                 for (int x = 0; x < 5; x++) {
                     if (y == 2 && x == 2) {
-                        toPrint += "F";
+                        toPrint += BOLD + "F" + RESET;
                     } else if (boardIsChecked[y][x]) {
-                        toPrint += "\u001B[1m" + "[]" + "\u001B[0m";
+                        toPrint += BOLD + "[]" + RESET;
                     } else {
                         if ((card[y][x]) / 10 == 0) {
                             toPrint += " ";
@@ -568,14 +572,14 @@ public class BingoPlayer {
     }
 
     public void printMarks() {
-        System.out.println("  B\t I\t N\t G\t O\n");
+        System.out.println(BOLD + "  B\t I\t N\t G\t O\n" + RESET);
         for (int y = 0; y < 5; y++) {
             String toPrint = " ";
             for (int x = 0; x < 5; x++) {
                 if (y == 2 && x == 2) {
-                    toPrint += "F";
+                    toPrint += BOLD + "F" + RESET;
                 } else if (boardIsChecked[y][x]) {
-                    toPrint += "\u001B[1m" + "[]" + "\u001B[0m";
+                    toPrint += BOLD + "[]" + RESET;
                 } else {
                     if ((card[y][x]) / 10 == 0) {
                         toPrint += " ";
