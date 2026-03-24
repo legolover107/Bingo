@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 
 public class BingoPlayer {
-    private final int COLORNUM = (int)(Math.random()*6)+1;
-    private final String COLOR = "\u001B[3" + COLORNUM + "m";
-    private final String BOLD = "\u001B[1;3" + COLORNUM + "m";
+    private final int RED = (int)(Math.random()*256);
+    private final int GREEN = (int)(Math.random()*256);
+    private final int BLUE = (int)(Math.random()*256);
+    private final String COLORNUM = RED + ";" + GREEN + ";" + BLUE;
+    private final String COLOR = "\u001B[38;2;" + COLORNUM + "m";
+    private final String BOLD = "\u001B[1;38;2;" + COLORNUM + "m";
+    private final String HIGHLIGHTED = "\u001B[48;2;" + COLORNUM + "m";
     private final String RESET = "\u001B[0m";
     public static boolean simpleNumbers = false;
     private String name;
